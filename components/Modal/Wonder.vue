@@ -1,7 +1,7 @@
 <template>
   <div class=" w-[300px] py-4">
     <h1 class=" font-extrabold text-center text-2xl py-2">{{ wonder.name }}</h1>
-    <Carousel>
+    <Carousel :autoplay="2000">
       <Slide v-for="(img, index) in wonder.imgs" :key="index">
         <div class=" rounded overflow-hidden">
           <NuxtPicture :src="img" class="w-full" height="600" />
@@ -9,7 +9,6 @@
       </Slide>
 
       <template #addons>
-        <Navigation />
         <Pagination />
       </template>
     </Carousel>
