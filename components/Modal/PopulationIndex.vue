@@ -1,24 +1,24 @@
 <template>
     <Modal :bottomRight="true">
-        <div class="rounded ">
-            <ul class="">
-                <li class="flex gap-2 justify-between items-center">0-10: <div class="bg-[#FFEDA0] w-6 h-3"></div>
-                </li>
-                <li class="flex gap-2 justify-between items-center">10-20: <div class="bg-[#FED976] w-6 h-3"></div>
-                </li>
-                <li class="flex gap-2 justify-between items-center">20-50: <div class="bg-[#FEB24C] w-6 h-3"></div>
-                </li>
-                <li class="flex gap-2 justify-between items-center">50-100: <div class="bg-[#FD8D3C] w-6 h-3"></div>
-                </li>
-                <li class="flex gap-2 justify-between items-center">100-200: <div class="bg-[#FC4E2A] w-6 h-3"></div>
-                </li>
-                <li class="flex gap-2 justify-between items-center">200-500: <div class="bg-[#E31A1C] w-6 h-3"></div>
-                </li>
-                <li class="flex gap-2 justify-between items-center">500-1000: <div class="bg-[#BD0026] w-6 h-3"></div>
-                </li>
-                <li class="flex gap-2 justify-between items-center">1000+: <div class="bg-[#800026] w-6 h-3"></div>
+        <div class="rounded">
+            <ul>
+                <li v-for="(color, range) in data" :key="range" class="flex gap-2 justify-between items-center">
+                    {{ range }}: <div :style="{ backgroundColor: color }" class="w-6 h-3"></div>
                 </li>
             </ul>
         </div>
     </Modal>
 </template>
+
+<script setup lang="ts">
+const data = {
+    "0-10": "#FFEDA0",
+    "10-20": "#FED976",
+    "20-50": "#FEB24C",
+    "50-100": "#FD8D3C",
+    "100-200": "#FC4E2A",
+    "200-500": "#E31A1C",
+    "500-1000": "#BD0026",
+    "1000+": "#800026"
+};
+</script>

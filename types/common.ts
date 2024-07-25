@@ -1,6 +1,6 @@
 interface ILocation{
     lat:number;
-    long:number;
+    lng:number;
 }
 
 export type {

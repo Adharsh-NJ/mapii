@@ -13,13 +13,17 @@
 </template>
 
 <script setup lang="ts">
+import type { Wonder } from '~/types/worldWonders';
 
-defineProps({
-    currentWonder: Object
-})
 
-const emit = defineEmits(['next-wonder', 'prev-wonder']);
+defineProps<{
+    currentWonder: Wonder | null;
+}>();
 
+const emit = defineEmits<{
+    (event: 'next-wonder'): void;
+    (event: 'prev-wonder'): void;
+}>();
 function nextWonderHandler() {
     emit('next-wonder');
 }
