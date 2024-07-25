@@ -26,6 +26,7 @@
   </div>
 </template>
 <script setup lang="ts">
+//enum for skills
 const skills = ref(["Nuxt", "three.js", "vue", "next.js", "framer.motion", "Tailwind", "ReactNative", "Expo", "typescript", "Team leading"]) 
 </script>
 <style scoped>

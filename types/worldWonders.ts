@@ -1,6 +1,7 @@
 import type { ILocation } from "./common";
+
 export interface Wonder {
-    name: string;
+  name: string;
   location: ILocation;
   imgs: string[];
   marker: ILocation;

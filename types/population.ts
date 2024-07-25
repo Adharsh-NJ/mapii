@@ -1,16 +1,13 @@
 
-    export interface IPopulation {
-        [key:string]: {
-        population: number;
-        area: number;
-        populationDensity: number;
-    };
+//change name
+interface IData {
+    population: number;
+    area: number;
+    populationDensity: number;
+}
 
-    }
+export interface IPopulation extends Record<string, IData> { };
 
-   export interface IPopulationData {
-        state: string;
-        population: number;
-        area: number;
-        populationDensity: number;
-    }
+export interface IPopulationData extends IData {
+    state: string;
+}

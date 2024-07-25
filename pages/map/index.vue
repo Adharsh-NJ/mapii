@@ -27,10 +27,9 @@ const marker = ref<{ leafletObject: L.Marker | null } | null>(null);
 // Define computed properties
 const currentWonder = computed<Wonder>(() => WORLD_WONDERS[currentIndex.value]);
 function closePopup() {
+  //remove log
   console.log(popup.value)
-  if (popup.value?.leafletObject) {
-    popup.value?.leafletObject.close();
-  }
+  popup.value?.leafletObject?.close();
 }
 
 const nextWonder = () => {
@@ -48,12 +47,11 @@ const prevWonder = () => {
   }, 500)
 };
 
+//type for 'newWonder'
 watch(currentWonder, async (newWonder) => {
   await nextTick(); // Wait for DOM updates
-  let leafletMap
-  if (mapInstance.value) {
-    leafletMap = mapInstance.value.getLeafletMap();;
-  }
+  //use const since leafletMap is not reassigned
+  const leafletMap = mapInstance.value?.getLeafletMap()
 
   if (leafletMap) {
     leafletMap.flyTo([newWonder.location.lat, newWonder.location.lng], leafletMap.getZoom(), {
@@ -67,6 +65,7 @@ watch(currentWonder, async (newWonder) => {
 });
 
 // Define image dimensions and compute bounds
+//better to use snake case for constants
 const imageWidth = 500;
 const imageHeight = 500;
 

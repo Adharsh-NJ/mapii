@@ -58,17 +58,17 @@ const calculateDistanceToLocation = () => {
 
 const flyToLocation = (loc: ILocation) => {
     const leafletMap = mapInstance.value?.getLeafletMap();
-    if (leafletMap) {
-        leafletMap.flyTo([loc.lat, loc.lng], 12);
-    }
+    leafletMap?.flyTo([loc.lat, loc.lng], 12);
 };
 
 onMounted(() => {
+    //better to check if browser supports geolocation
     navigator.geolocation.getCurrentPosition((position) => {
         location.value = { lat: position.coords.latitude, lng: position.coords.longitude };
     });
 });
 
+//type for params
 watch([location, isLoading], async ([newLocation, newLoading]) => {
     await nextTick(); // Wait for DOM updates
     if (!newLoading && newLocation) {

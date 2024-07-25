@@ -2,7 +2,7 @@ import type { IPopulation, IPopulationData } from "~/types/population";
 import type { Feature, GeoJsonObject, Polygon, MultiPolygon } from 'geojson';
 import type { ILocation } from "~/types/common";
 
-//use switch instead of if else
+//use switch instead of if elseif
 export function getColorFromDensity(d: number): string {
     return d > 1000 ? '#800026' :
         d > 500 ? '#BD0026' :
@@ -88,6 +88,7 @@ export const loadPolygonsFromGeoJson = async (POPULATION_DATA:IPopulation,geojso
 export function calculateDistance(loc1: ILocation, loc2: ILocation) {
     //not readable
     //use proper identifier names
+    //not following SRP
     const R = 6371; // Radius of the Earth in km
     const dLat = (loc2.lat - loc1.lat) * Math.PI / 180;
     const dLon = (loc2.lng - loc1.lng) * Math.PI / 180;
