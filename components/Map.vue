@@ -31,6 +31,7 @@ function handleMapReady() {
 }
 const emit = defineEmits(["mapReady"])
 function getLeafletMap() {
+    //use optional chaining since map can be null (not sure)
     return map.value ? map.value.leafletObject : null;
 }
 // Expose the map ref

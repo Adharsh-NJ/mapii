@@ -1,3 +1,4 @@
+<!-- move all the data to constants -->
 <template>
   <div class="background-image p-6 bg-gray-50 min-h-screen flex flex-col items-center">
     <div class=" bg-white p-8 rounded-lg w-1/2 overflow-auto h-3/4 my-auto">

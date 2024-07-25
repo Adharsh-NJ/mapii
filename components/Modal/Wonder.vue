@@ -10,6 +10,7 @@
 <script setup lang="ts">
 defineProps({
   wonder: {
+    //stronger type for wonder
     type: Object,
     required: true
   }

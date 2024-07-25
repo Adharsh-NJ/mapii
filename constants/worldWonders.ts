@@ -1,5 +1,6 @@
 import type { Wonder } from "~/types/worldWonders";
 
+//location and marker having same value?
 const WORLD_WONDERS: Wonder[] = [
   {
     name: "Great Wall of China",

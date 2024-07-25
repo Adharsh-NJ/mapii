@@ -2,6 +2,7 @@ import type { IPopulation, IPopulationData } from "~/types/population";
 import type { Feature, GeoJsonObject, Polygon, MultiPolygon } from 'geojson';
 import type { ILocation } from "~/types/common";
 
+//use switch instead of if else
 export function getColorFromDensity(d: number): string {
     return d > 1000 ? '#800026' :
         d > 500 ? '#BD0026' :
@@ -14,6 +15,7 @@ export function getColorFromDensity(d: number): string {
 }
 
 export function getDensityFromState(state: string,data:IPopulation): number {
+    // return data?.[state]?.populationDensity ?? 0;
     if (data[state]) {
         return data[state].populationDensity;
     }
@@ -21,6 +23,7 @@ export function getDensityFromState(state: string,data:IPopulation): number {
 }
 
 export function getPopulationData(state: string,POPULATION_DATA:IPopulation): IPopulationData | undefined {
+    //can use ternary
     if (POPULATION_DATA[state]) {
         return {
             state,
@@ -31,6 +34,10 @@ export function getPopulationData(state: string,POPULATION_DATA:IPopulation): IP
 }
 
 const convertCoordinates = (coordinates: number[][][]) => {
+    // return coordinates[0].map(([lng, lat]: number[]) => ({
+    //     lat,
+    //     lng
+    // }));
     return coordinates[0].map((coord: number[]) => ({
         lat: coord[1],
         lng: coord[0],
@@ -43,7 +50,7 @@ export const loadPolygonsFromGeoJson = async (POPULATION_DATA:IPopulation,geojso
         polygons = (geojson as any).features.flatMap((feature: Feature) => {
             const properties = feature.properties;
             const geometry = feature.geometry;
-
+            //instead of if else use switch or a mapper
             if (geometry.type === 'Polygon') {
                 return [{
                     id: properties ? properties.NAME_1 : '',
@@ -79,6 +86,8 @@ export const loadPolygonsFromGeoJson = async (POPULATION_DATA:IPopulation,geojso
 };
 
 export function calculateDistance(loc1: ILocation, loc2: ILocation) {
+    //not readable
+    //use proper identifier names
     const R = 6371; // Radius of the Earth in km
     const dLat = (loc2.lat - loc1.lat) * Math.PI / 180;
     const dLon = (loc2.lng - loc1.lng) * Math.PI / 180;

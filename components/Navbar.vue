@@ -1,3 +1,5 @@
+<!-- change page title -->
+
 <template>
     <div class=" w-full bg-slate-500 text-white flex justify-between p-4">
         <NuxtLink to="/" class=" hover:scale-x-95">
