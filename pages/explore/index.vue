@@ -8,7 +8,7 @@
         <LRectangle v-if="location" :bounds="createBounds(location)" :opacity="0.6" />
         <LRectangle v-if="tlLocation" :bounds="createBounds(tlLocation)" :opacity="0.6" />
     </Map>
-    <Modal>
+    <Modal :bottom-right="true">
         <button @click="setMarkerToTalkingLands" class="hover:bg-blue-400 border p-4 bg-slate-300 rounded">Check
             distance to Talking Lands</button>
         <h1 v-if="distanceInKm">Distance: {{ distanceInKm }} km</h1>
