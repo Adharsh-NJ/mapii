@@ -1,5 +1,5 @@
 <template>
-  <div class=" w-[300px] py-4">
+  <div class=" w-[300px] py-4" v-if="wonder">
     <h1 class=" font-extrabold text-center text-2xl py-2">{{ wonder.name }}</h1>
     <NuxtPicture :src="wonder.imgs[0]" class="w-full" height="600" />
     <div class="py-2 font-bold">
@@ -8,10 +8,10 @@
   </div>
 </template>
 <script setup lang="ts">
-defineProps({
-  wonder: {
-    type: Object,
-    required: true
-  }
-});
+import type { Wonder } from '~/types/worldWonders';
+
+defineProps<{
+  wonder: Wonder | null;
+}>();
+
 </script>

@@ -1,0 +1,2 @@
+export const skills = ["Nuxt", "javascript", "three.js", "vue", "next.js", "framer.motion", "Tailwind", "ReactNative", "Expo", "typescript", "Team leading", "Jira", "communication"]
+export const projectStructure = ["Nuxt", "Typescript", "Tailwind", "Leaflet", "git"]

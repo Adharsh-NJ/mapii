@@ -79,13 +79,14 @@ export const loadPolygonsFromGeoJson = async (POPULATION_DATA:IPopulation,geojso
 };
 
 export function calculateDistance(loc1: ILocation, loc2: ILocation) {
-    const R = 6371; // Radius of the Earth in km
-    const dLat = (loc2.lat - loc1.lat) * Math.PI / 180;
+    const earthRadius = 6371; // Radius of the Earth in km
+    const dLat = (loc2.lat - loc1.lat) * Math.PI / 180;//differences in latitute and longitude converted to radient 
     const dLon = (loc2.lng - loc1.lng) * Math.PI / 180;
-    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    //Haversine formula is used to calculate the central angle between the two points.
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +//square of half
         Math.cos(loc1.lat * Math.PI / 180) * Math.cos(loc2.lat * Math.PI / 180) *
-        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distance = R * c; // Distance in km
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);//square of half
+    const centralAngel = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = earthRadius * centralAngel; // Distance in km
     return distance;
 }

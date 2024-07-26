@@ -1,16 +1,13 @@
 <template>
     <Modal>
         <div>
-            <h1>State: {{ state }}</h1>
-            <h1>Population: {{ population }}</h1>
-            <h1>Area: {{ area }}</h1>
-            <h1>Population Density: {{ populationDensity }}</h1>
+            <h2 v-for="(item, name, index) in props" :key="index">{{ name }}: {{ item }}</h2>
         </div>
     </Modal>
 </template>
 
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
     state: String,
     population: Number,
     area: Number,

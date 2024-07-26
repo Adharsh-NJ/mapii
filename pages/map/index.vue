@@ -1,5 +1,5 @@
 <template>
-  <Map :center="currentWonder.location" :zoom="zoom" ref="mapInstance">
+  <Map :zoom="zoom" ref="mapInstance" @map-ready="handleMapReady">
     <LMarker :lat-lng="currentWonder.location" ref="marker">
       <LPopup ref="popup">
         <ModalWonder :wonder="currentWonder" />
@@ -23,16 +23,18 @@ const currentIndex = ref<number>(0);
 const mapInstance = ref<{ getLeafletMap: () => L.Map | null } | null>(null);
 const popup = ref<{ leafletObject: L.Popup | null } | null>(null);
 const marker = ref<{ leafletObject: L.Marker | null } | null>(null);
+const isLoading = ref(true);
 
 // Define computed properties
 const currentWonder = computed<Wonder>(() => WORLD_WONDERS[currentIndex.value]);
 function closePopup() {
-  console.log(popup.value)
   if (popup.value?.leafletObject) {
     popup.value?.leafletObject.close();
   }
 }
-
+const handleMapReady = () => {
+  isLoading.value = false;
+}
 const nextWonder = () => {
   closePopup();
   setTimeout(() => {
@@ -44,8 +46,7 @@ const prevWonder = () => {
   closePopup();
   setTimeout(() => {
     currentIndex.value = (currentIndex.value - 1 + WORLD_WONDERS.length) % WORLD_WONDERS.length;
-
-  }, 500)
+  }, 50)
 };
 
 watch(currentWonder, async (newWonder) => {
@@ -58,7 +59,7 @@ watch(currentWonder, async (newWonder) => {
   if (leafletMap) {
     leafletMap.flyTo([newWonder.location.lat, newWonder.location.lng], leafletMap.getZoom(), {
       animate: true,
-      duration: 5 // Duration in seconds
+      duration: 10 // Duration in seconds
     });
     if (marker.value?.leafletObject) {
       marker.value.leafletObject.setLatLng([newWonder.location.lat, newWonder.location.lng]);
@@ -80,4 +81,20 @@ const bounds = computed<L.LatLngBoundsLiteral>(() => {
     [latLng.lat + latDiff, latLng.lng + lngDiff]
   ];
 });
+watch(isLoading, async (loading) => {
+  await nextTick();
+  if (!loading) {
+    let leafletMap
+    if (mapInstance.value) {
+      leafletMap = mapInstance.value.getLeafletMap();;
+    }
+
+    if (leafletMap) {
+      leafletMap.flyTo([currentWonder.value.location.lat, currentWonder.value.location.lng], leafletMap.getZoom() + 5, {
+        animate: true,
+        duration: 8 // Duration in seconds
+      });
+    }
+  }
+})
 </script>

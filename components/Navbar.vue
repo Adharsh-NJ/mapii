@@ -1,7 +1,7 @@
 <template>
-    <div class=" w-full bg-slate-500 text-white flex justify-between p-4">
+    <div class=" w-full bg-gradient-to-r from-slate-900 to-slate-700 text-white flex justify-between p-4">
         <NuxtLink to="/" class=" hover:scale-x-95">
-            <h1>Mapii</h1>
+            <h1>MapD</h1>
         </NuxtLink>
         <div class=" flex gap-4">
             <NuxtLink to="/map" class=" hover:scale-x-95">Wonders</NuxtLink>

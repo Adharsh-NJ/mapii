@@ -4,6 +4,7 @@
 
 body{
     overflow: hidden;
+    font-family: 'Urbanist', sans-serif;
 }
 
 .carousel__slide{
